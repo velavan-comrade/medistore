@@ -2,7 +2,7 @@ const express=require('express')
 const app=express()
 
 const bodypraser=require('body-parser');
-const mongoose=require('mongoose')
+const mongoose=require('mongoose');
 const session=require('express-session')
 const productRoutes=require('./route/product.js');
 const customerRoute=require('./route/customer.js');
