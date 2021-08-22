@@ -26,7 +26,7 @@ var upload=multer({
 
 router.get("/", (req,res,err) => {
 
-  product.find()
+  product.find().limit(7)
     .exec()
     .then((docs) => {
       console.log(docs);

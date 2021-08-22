@@ -2,27 +2,29 @@ const express = require('express')
 const router=express.Router();
 const mongoose=require('mongoose');
 const customer=require('../model/Customer')
+const url1=require("url");
 
 router.get('/',(req,res,err)=>{
-    
-customer.find().exec().then((doc)=>{
-if(doc.length>0)
+    var qry=url1.parse(req.url,true).query;
+    var uname=qry.uname;
+    var pass=qry.pwd;
+    customer.find({username:uname,password:pass}).exec().then((doc)=>{
+        if(doc.length>0)
 {
     console.log(doc)
     res.status(200).json({
         status:"success",
-        message:"Customer Details",
+        message:"verified",
         length:doc.length,
         data:doc
     })
 }
 else{
-    console.log(err)
+    
     res.status(200).json({
         status:"sucess",
         message:"no data found",
         data:doc,
-        img:`/asset/imge-1628658530396.jpg`,
     })
 }
 }).catch((err)=>{
@@ -32,7 +34,7 @@ else{
         message:"unable to fetch",
         error:err
     })
-})
+    })
 });
 
 module.exports=router;

@@ -9,7 +9,9 @@ import Login from './Login';
 import About from './About';
 import './Routing.css';
 import AddProduct from './AddProduct';
-import Home from './Home'
+import Home from './Home';
+import Order from './Order';
+import Cart from './Cart'
 
 class Routing extends Component {
     render() {
@@ -19,11 +21,15 @@ class Routing extends Component {
                     <nav>
                         <ul>
                         <li>
+                            <Link to="/about">About</Link>
+
+                            </li>
+                        <li>
                             <Link to="/order">Orders</Link>
                             </li>
                             
                             <li>
-                                <Link to="/login">Login</Link>
+                                <Link to="/cart">Cart</Link>
                             </li>
                             <li>
                                 <Link to="/">Home</Link>
@@ -32,6 +38,9 @@ class Routing extends Component {
                         </ul>
                     </nav>
                     <Switch>
+                    <Route path="/cart">
+                            <Cart />
+                        </Route>
                         <Route path="/about">
                             <About />
                         </Route>
@@ -40,7 +49,7 @@ class Routing extends Component {
                         </Route>
                         
                         <Route path="/order">
-                            <AddProduct /> {/*  have to change */}
+                            <Order /> {/*  have to change */}
                         </Route>
                         <Route path="/">
                             <Home />
