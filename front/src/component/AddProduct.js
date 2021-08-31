@@ -48,7 +48,7 @@ import './AddProduct.css'
                     <input type="text" name="uses" value={uses} placeholder="What for?" onChange={this.changeHandler}></input><br></br>
                     <input type="text" name="desc" value={desc} placeholder="Description" onChange={this.changeHandler}></input><br></br>
                     <input type="file" name="imge" id="button" onChange={this.addImg}  /><br></br>
-                        <button id="button1" onClick={this.submitHandler}>Add</button>
+                    <button id="button1" onClick={this.submitHandler}>Add</button>
                 </form>
             </div>
         )

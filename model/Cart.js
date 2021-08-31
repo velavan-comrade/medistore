@@ -5,6 +5,7 @@ const cartSchema=mongoose.Schema({
     items:Number,
     quantity:Number,
     amount:Number,
+    status:String
 });
 
 module.exports=mongoose.model("cart",cartSchema);

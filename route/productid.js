@@ -1,17 +1,16 @@
 const express = require('express')
 const router=express.Router();
 const mongoose=require('mongoose');
-const customer=require('../model/Customer')
+const product=require('../model/Product')
 const url1=require("url");
 
 router.get('/',(req,res,err)=>{
     console.log("in");
     var qry=url1.parse(req.url,true).query;
     console.log(qry);
-    var uname=qry.uname;
-    var pass=qry.pwd;
-    console.log(uname);
-    customer.find({username:uname,password:pass}).exec().then((doc)=>{
+    var pid=qry.id;
+    
+    product.find({productId:pid}).exec().then((doc)=>{
         if(doc.length>0)
         {
          console.log(doc)

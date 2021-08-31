@@ -1,0 +1,8 @@
+
+.cart{
+    width: 200px;
+  
+    z-index: 1000;
+    transform: translate(20%,-150%);
+    background-color: white;
+    }

@@ -4,8 +4,10 @@ const app=express()
 const bodypraser=require('body-parser');
 const mongoose=require('mongoose');
 const session=require('express-session')
+const productIdRoutes=require('./route/productid.js');
 const productRoutes=require('./route/product.js');
 const customerRoute=require('./route/customer.js');
+const addcartroute=require('./route/addcart')
 
 mongoose.connect('mongodb://localhost/medi', {useNewUrlParser: true,  useUnifiedTopology: true });
 var db=mongoose.connection;
@@ -33,9 +35,11 @@ app.use((req, res, next) => {
     }
     next();
 })
-
+app.use('/productid',productIdRoutes);
 app.use('/product',productRoutes);
 app.use('/customer',customerRoute);
+app.use('/addcart',addcartroute);
+
 
 app.use((req, res, next) => {
     console.log(next)

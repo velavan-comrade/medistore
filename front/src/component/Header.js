@@ -17,14 +17,15 @@ constructor(props){
 }
 
 getUser=(con)=>{
-    this.setState({userName:con})
+    console.log(con)
+    var l=sessionStorage.getItem("uname")
+    this.setState({userName:l})
 }
-getId=(con)=>{
-   
+getId=(con)=>{  
     this.setState({result:con});
-   
 }
 showHandler=(con)=>{
+    console.log(con)
     this.setState({show:con})
 }
     render() {
@@ -35,10 +36,10 @@ showHandler=(con)=>{
                <img src={logo} alt="logo" id="logo"></img>
                 &nbsp;<span id="title" >MediStore</span>
                <input type="text" id="header-input"></input>
-               {show?<Login show={this.showHandler} getUser={this.getUser}  getId={this.getId}/>:null}
+               {show?<Login show={this.showHandler} User={this.getUser}  Id={this.getId}/>:null}
                 {console.log("ss")}
                {
-               result?<span>{userName}</span>:
+               result?<span>{console.log(sessionStorage.getItem("uname"))}</span>:
                <button onClick={()=>{this.setState({show:true})}}>Login</button>}
             </div>
         )

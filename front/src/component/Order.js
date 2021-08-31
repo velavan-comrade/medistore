@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
- class Order extends Component {
-    render() {
-        return (
-            <div>
-                order
-            </div>
-        )
+export class Order extends Component {
+    constructor(props)
+    {
+        super(props);
     }
+    componentDidMount()
+    {
+        axios.get()
+    }
+    render() {
+        console.log(this.props)
+        return (
+       <div></div>
+        )}
 }
 
 export default Order
+
+
+
+
+

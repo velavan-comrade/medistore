@@ -3,9 +3,7 @@ import axios from 'axios';
 import './Home.css';
 import Banners from './Banners';
 import Footer from './Footer';
-import { BrowserRouter as Router ,Route,Link} from 'react-router-dom';
-import Order from './Order';
-import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import Addcart from './Addcart';
 
 
  class Home extends Component {
@@ -13,7 +11,9 @@ import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
         super(props)
         this.state={
             img:"",
-            data1:[]
+            data1:[],
+            id:"",
+            adds:false
         }
     }
    
@@ -27,31 +27,32 @@ import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
            
         }).catch(e=>{console.log(e)})
     }
-    addCart=()=>{
-     
-    }
+  changeAdd=(con)=>{
+      console.log(con)
+        this.setState({adds:con});
+  }
+  
   
     render() {
-       
+       const { adds , id}=this.state;
         const listt =this.state.data1;
-        var img="";
        return(<div>
            <div>
                <Banners></Banners>
            </div>
+           <div> {adds?<Addcart id={id} close={this.changeAdd}/>:null}</div>
            <table cellspacing="20px"><tr>
+              
             {listt.map(t=>
-           
-            <Link to={`/order/${t.productId}`}>
                     <td >
                     
                      <div key={t.productId} className="card" onClick={this.addCart}>
-                         <img  src={`data:image/jpeg;buffer,${t.img.data}`} alt="ee"></img>
-                        <div className="container"></div>
+                         <img  src={`data:image/jpeg;buffer,${t.img.data}`} alt={t.productName}></img>
+                        <div className="container"><button onClick={()=>{this.setState({id:t.productId});this.setState({adds:true})}}>Add to cart</button></div>
                     </div>
                     
                     </td>
-                    </Link>
+                   
             )}
             </tr>
             </table>

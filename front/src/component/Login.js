@@ -14,14 +14,11 @@ export class Login extends Component {
   }
  verify=()=>{
    console.log(this.state.uname);
-    axios.get("http://localhost:9000/customer?uname="+JSON.stringify(this.state.uname)+"&pwd="+JSON.stringify(this.state.password))
+    axios.get("http://localhost:9000/customer?uname="+this.state.uname+"&pwd="+this.state.password)
     .then((response)=>{
-      if(response.message=="verified")
+      if(response.data.message=="verified")
       {
-        this.setState({message:"success"});
-        this.props.getName.bind(this,this.state.uname);
-        this.props.show.bind(this,false);
-        this.props.getId.bind(this,true);
+         this.succ()
       }
       else{
           this.setState({message:"User Name and Password are wrong"})
@@ -29,7 +26,12 @@ export class Login extends Component {
     }).catch((e)=>console.log(e));
 
   }
-
+succ=()=>
+{
+this.props.show.bind(this,false);
+sessionStorage.setItem("uname",this.state.uname);
+console.log(sessionStorage.getItem("uname"))
+}
  changeHandler=e=>{
  this.setState({[e.target.name]:e.target.value})
  }
@@ -38,7 +40,6 @@ export class Login extends Component {
        
             <div className="login-box">
               <span id="err">{this.state.message}</span>
-              
                         <h2>Login</h2>
                    
             <div className="user-box">
